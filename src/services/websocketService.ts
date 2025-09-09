@@ -45,23 +45,12 @@ class WebSocketService {
     this.disconnect = this.disconnect.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.updateUserStatus = this.updateUserStatus.bind(this);
-    
-    // In development mode, set socket as connected since we use Pusher
-    if (import.meta.env.DEV) {
-      useAppStore.getState().setSocketConnected(true);
-    }
   }
 
   /**
    * Connect to WebSocket server
    */
   connect(familyId: string, userId: string) {
-    // Skip WebSocket connection in development since we're using Pusher
-    if (import.meta.env.DEV) {
-      console.log('WebSocket disabled in development - using Pusher instead');
-      return;
-    }
-
     if (this.isConnecting || (this.ws && this.ws.readyState === WebSocket.OPEN)) {
       return;
     }
@@ -69,8 +58,8 @@ class WebSocketService {
     this.isConnecting = true;
     
     try {
-      // TODO: Replace with actual WebSocket server URL
-      const wsUrl = `ws://localhost:8080/ws?familyId=${familyId}&userId=${userId}`;
+      // Use production WebSocket server URL
+      const wsUrl = `wss://api.kidscallhome.com/ws?familyId=${familyId}&userId=${userId}`;
       this.ws = new WebSocket(wsUrl);
 
       this.ws.onopen = () => {
@@ -127,12 +116,6 @@ class WebSocketService {
    * Disconnect from WebSocket server
    */
   disconnect() {
-    // Skip WebSocket operations in development
-    if (import.meta.env.DEV) {
-      console.log('WebSocket disconnect skipped in development - using Pusher instead');
-      return;
-    }
-
     if (this.ws) {
       this.ws.close();
       this.ws = null;
@@ -147,12 +130,6 @@ class WebSocketService {
    * Send message through WebSocket
    */
   sendMessage(type: WebSocketMessage['type'], data: any, to?: string) {
-    // Skip WebSocket operations in development
-    if (import.meta.env.DEV) {
-      console.log('WebSocket sendMessage skipped in development - using Pusher instead');
-      return;
-    }
-
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
       console.warn('WebSocket not connected, cannot send message');
       return;
@@ -173,12 +150,6 @@ class WebSocketService {
    * Update user online status
    */
   updateUserStatus(isOnline: boolean) {
-    // Skip WebSocket operations in development
-    if (import.meta.env.DEV) {
-      console.log('WebSocket updateUserStatus skipped in development - using Pusher instead');
-      return;
-    }
-    
     this.sendMessage('status_update', { isOnline });
   }
 
@@ -299,12 +270,6 @@ class WebSocketService {
    * Attempt to reconnect with exponential backoff
    */
   private attemptReconnect(familyId: string, userId: string) {
-    // Skip reconnection in development mode
-    if (import.meta.env.DEV) {
-      console.log('WebSocket reconnection disabled in development - using Pusher instead');
-      return;
-    }
-
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
       console.error('Max reconnection attempts reached');
       return;

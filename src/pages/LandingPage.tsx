@@ -37,7 +37,7 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
-import { createDemoFamily, getDemoFamilyInfo } from '../utils/demoFamily';
+// Removed demo family imports - using real data only
 
 /**
  * LandingPage - Main landing page with problem/solution explanation
@@ -520,13 +520,10 @@ const LandingPage: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => {
-                  createDemoFamily();
-                  navigate('/login');
-                }}
+                onClick={() => navigate('/login')}
                 className="btn-secondary text-lg px-8 py-4"
               >
-                Try Demo
+                Login to Family
               </button>
               <button
                 onClick={handleCreateFamily}
