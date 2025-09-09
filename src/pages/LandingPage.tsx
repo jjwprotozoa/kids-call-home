@@ -482,37 +482,37 @@ const LandingPage: React.FC = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <h2 className="heading-2 text-white mb-6 text-shadow-lg">
-              Try It Out First
+              Ready to Get Started?
             </h2>
             <p className="text-xl text-white text-opacity-90 mb-8 text-shadow">
-              Experience the app with our demo family before creating your own.
+              Create your family account or join an existing family to start using Kids Call Home.
             </p>
             
             <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Demo Family</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Get Started</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">👨‍👩‍👧‍👦 The Johnson Family</h4>
+                  <h4 className="text-lg font-semibold text-white mb-2">🚀 Ready to Connect?</h4>
                   <p className="text-white text-opacity-90 mb-4">
-                    <strong>Family Code:</strong> <code className="bg-white bg-opacity-30 px-2 py-1 rounded">{getDemoFamilyInfo().familyCode}</code>
+                    Create your family account or join an existing family to start using Kids Call Home.
                   </p>
                   <div className="space-y-2">
                     <p className="text-white text-opacity-90">
-                      <strong>Guardians:</strong> {getDemoFamilyInfo().guardians.join(', ')}
+                      <strong>For Guardians:</strong> Create a family and invite children
                     </p>
                     <p className="text-white text-opacity-90">
-                      <strong>Children:</strong> {getDemoFamilyInfo().children.join(', ')}
+                      <strong>For Children:</strong> Join with a family code
                     </p>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">How to Test</h4>
+                  <h4 className="text-lg font-semibold text-white mb-2">How to Start</h4>
                   <ol className="text-white text-opacity-90 space-y-2 text-sm">
-                    <li>1. Click "Try Demo" below</li>
-                    <li>2. Go to Login page</li>
-                    <li>3. Enter the family code</li>
-                    <li>4. Login as any family member</li>
-                    <li>5. See the real family data in action!</li>
+                    <li>1. Click "Create Family" to set up a new family</li>
+                    <li>2. Or click "Login to Family" to join existing family</li>
+                    <li>3. Follow the setup process</li>
+                    <li>4. Start calling and messaging</li>
+                    <li>5. Enjoy staying connected!</li>
                   </ol>
                 </div>
               </div>
